@@ -1,72 +1,68 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//FIND THE DUPLICATE NUMBER IN AN UNSORTED GROUP OF ELEMENTS
-//USED AN ARRAY AND THEN USED VECTOR 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//EASY WAY TO FIND A MISSING NUMBER IN A SPECIFIED RANGE
+//USED AN ARRRAY FIRST THEN A VECTOR
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include<iostream>
-#include <array>
-#include <vector>
+#include<array>
+#include<vector>
 
 int main(void)
 {
-
-	std::array<int, 10> numbers{ 1, 2, 3, 4, 5, 6, 2, 7, 5, 8 };
 	
+	int total = 0;
+	//We know the number range so we add them up and stick the number in total
+	for (int i = 0; i <= 10; i++)
+	{
+		total += i;
+	}
+
+	//Show the total
+	std::cout << total << std::endl;
 	
-	//check each element against the all of the other elements in the array
+	//Here is the actual array. IIt is missing a 6
+	std::array<int, 9> numbers{ 1, 2, 3, 4, 5, 7, 8, 9, 10 };
+	
+	int actualTotal = 0;
+	//Add up all of the numbers in the array and stick the number in actualTotal
 	for (int i = 0; i < numbers.size(); i++)
 	{
-		for (int j = (i + 1); j < numbers.size(); j++)
-		{
-			//if we get a match we set it to null
-			if (numbers[i] == numbers[j])
-			{
-				numbers[j] = NULL;
-			}
-		}
+		actualTotal += numbers[i];
 	}
 
-	//show the world what we got
-	for (int i = 0; i < numbers.size(); i++)
+	//Show the world
+	std::cout << actualTotal << std::endl;
+
+
+	//Now if we get the difference tween the two numbers we will get the missing number. In this case 6
+	std::cout << total - actualTotal << std::endl;
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Same thing using a vector
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	std::cout << "Using a vectoor...." << std::endl;
+
+
+	//Here is the actual vector. IIt is missing a 6
+	std::vector<int> vecky{ 1, 2, 3, 4, 5, 7, 8, 9, 10 };
+
+	//need to reset actual total to use it again
+	actualTotal = 0;
+	
+	//Add up all of the numbers in the vector and stick the number in actualTotal
+	for (int i = 0; i < vecky.size(); i++)
 	{
-		if (numbers[i] != NULL)
-		{
-			std::cout << numbers[i];
-		}
-	}
-	 
-	std::cout<< "" << std::endl;
-
-
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//Do the same thing just with a vector
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	std::cout << "Using vectors......." << std::endl;
-
-	std::vector<int> numba{ 1, 2, 3, 4, 5, 6, 2, 7, 5, 8};
-
-	//check each element against the all of the other elements in the vector
-	for (int i = 0; i < numbers.size(); i++)
-	{
-		for (int j = (i + 1); j < numba.size(); j++)
-		{
-			//if we get a match we can kill it
-			if (numba.at(i) == numba.at(j))
-			{
-				numba.erase(numba.begin() + j);
-			}
-		}
+		actualTotal += vecky.at(i);
 	}
 
+	std::cout << actualTotal << std::endl;
 
-	//show the world what we got
-	for (int i = 0; i < numba.size(); i++)
-	{
-		std::cout << numba.at(i);
-	}
+	//Now if we get the difference tween the two numbers we will get the missing number. In this case 6
+	std::cout << total - actualTotal << std::endl;
 
-	std::cout << "" << std::endl;
 
-	std::cout << "Press ENTER to continue....";
+
+	std::cout << "Press ENTER to continue...";
 	std::cin.get();
 
 	return 0;
